@@ -3,6 +3,10 @@ require('dotenv').config();
 const express = require('express')
 const app = express();
 
+const fs = require('fs');
+const http = require('http');
+const https = require('https');
+
 const PORT = process.env.PORT || 3000;
 
 const Logger = require('./src/util/logger');
@@ -82,6 +86,25 @@ async function main() {
 
 main();
 
-app.listen(PORT, () => { client.log.web(`Website is live on port ${PORT}`)})
+if (process.env.NODE_ENV === 'prod') {
+    const privateKey = fs.readFileSync('/etc/letsencrypt/live/ru-pirie.com/privkey.pem', 'utf8');
+    const certificate = fs.readFileSync('/etc/letsencrypt/live/ru-pirie.com/cert.pem', 'utf8');
+    const ca = fs.readFileSync('/etc/letsencrypt/live/ru-pirie.com/chain.pem', 'utf8');
+
+    const credentials = {
+        key: privateKey,
+        cert: certificate,
+        ca: ca,
+    };
+
+    http.createServer(app).listen(80)
+    http.createServer(credentials, app).listen(443)
+    this.client.log.web('Listening on http and https')
+}  else {
+    http.createServer(app).listen(PORT)
+    this.client.log.web('Listening on http only')
+}
+
+
 
 module.exports = client
