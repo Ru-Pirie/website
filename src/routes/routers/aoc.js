@@ -1,0 +1,41 @@
+const express = require('express');
+const Walker = require('../../util/walk')
+const path = require('path');
+
+class Router {
+    constructor(client) {
+        this.name = 'advent-of-code';
+        this.path = '/advent-of-code';
+        this.dirPath = path.join(__dirname, '../../data/html/advent-of-code')
+        this.client = client;
+        this.enabled = true;
+        this.router = express.Router();
+    }
+
+    async setupRoutes() {
+        const files = await Walker.walk(this.dirPath);
+
+        files.files.forEach(async file => {
+            const routePath = file.exact.split(this.name)[1].replace(/\\/gi, '/').split('.')[0]
+            if (file.name === 'index.html') {
+                this.router.all(routePath.split('index')[0], (req, res) => {
+                    res.sendFile(file.exact)
+                })
+            } else if (!file.name.startsWith('special_')) {
+                this.router.all(routePath, (req, res) => {
+                    res.sendFile(file.exact)
+                })
+            } else if (file.name.startsWith('special_')){
+                // deal with special case 
+                this.router.all(routePath.replace('special_', ''), (req, res) => {
+                    res.send('Special Condition file')
+                })
+            }
+        })
+    }
+
+    getRouter = () => this;
+
+}
+
+module.exports = Router;
