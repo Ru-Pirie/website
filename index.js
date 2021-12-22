@@ -99,10 +99,10 @@ if (process.env.NODE_ENV === 'prod') {
 
     http.createServer(app).listen(80)
     http.createServer(credentials, app).listen(443)
-    this.client.log.web('Listening on http and https')
+    client.log.web('Listening on http and https')
 }  else {
     http.createServer(app).listen(PORT)
-    this.client.log.web('Listening on http only')
+    client.log.web('Listening on http only')
 }
 
 
