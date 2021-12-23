@@ -89,12 +89,10 @@ main();
 if (process.env.NODE_ENV === 'prod') {
     const privateKey = fs.readFileSync('/etc/letsencrypt/live/ru-pirie.com/privkey.pem', 'utf8');
     const certificate = fs.readFileSync('/etc/letsencrypt/live/ru-pirie.com/cert.pem', 'utf8');
-    const ca = fs.readFileSync('/etc/letsencrypt/live/ru-pirie.com/chain.pem', 'utf8');
 
     const credentials = {
         key: privateKey,
         cert: certificate,
-        ca: ca,
     };
 
     http.createServer(app).listen(80, () => {
