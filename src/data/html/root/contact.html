@@ -29,7 +29,7 @@
             const res = GetURLParameter('message')
             const element = document.getElementById('emailResult')
             if (res === 'success') element.innerHTML = 'Email has been successfully sent. I\'ll get back to you ASAP!'
-            else element.innerHTML = 'An unknown error occurred while sending email.'
+            else if (res === 'error') element.innerHTML = 'An unknown error occurred while sending email.'
         }
 
     </script>

@@ -36,7 +36,7 @@ class Router {
             }
 
             await this.client.db.query('INSERT INTO shorteners (url, destination, clicks, created, lastClicked) VALUES (?, ?, 0, ?, ?)', [ short, url, Date.now(), Date.now() ]);
-            
+            if (req.headers['user-agent'].toLowerCase().includes('sharex')) return res.end(JSON.stringify({ code: short }))
             res.redirect(`/s?code=${short}`)
         })
 
