@@ -4,12 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ru-Pirie | About</title>
+    <title>Ru-Pirie | Contact Me</title>
     <link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
     <link rel="stylesheet" type="text/css" href="/static/css/index.css"/>
     <link rel="shortcut icon" href="/static/images/favicon.png"/>
 </head>
-<body>
+<body onload="onLoad()">
+    <script>
+        function GetURLParameter(sParam)
+        {
+            var sPageURL = window.location.search.substring(1);
+            var sURLVariables = sPageURL.split('&');
+            for (var i = 0; i < sURLVariables.length; i++) 
+            {
+                var sParameterName = sURLVariables[i].split('=');
+                if (sParameterName[0] == sParam) 
+                {
+                    return sParameterName[1];
+                }
+            }
+        }
+
+        function onLoad() {
+            const res = GetURLParameter('message')
+            const element = document.getElementById('emailResult')
+            if (res === 'success') element.innerHTML = 'Email has been successfully sent. I\'ll get back to you ASAP!'
+            else element.innerHTML = 'An unknown error occurred while sending email.'
+        }
+
+    </script>
+
     <header>
         <div>
           <h1 class="title-global"><a href="/">&nbsp;&nbsp;Ru-Pirie</a></h1>
@@ -39,11 +63,34 @@
     </header>
     
 
+    <div id="sidebar">
+        <code>
+            I aim to read all emails sent to me however there is a chance I may miss it so if this is something urgent then please mention that in your message.
+            - Ru
+            <br>
+            <br>
+            For development questions and commisions please email developemnt@ru-pirie.com directly.
+        </code>
+    </div>
 
     <main>
-        <article>
-            <p>TO-DO; Any developer knows the pain lol</p>
-        </article>
+
+        <h1>Send me an Email</h1>
+        <form action="/contact/email" method="post">
+            <label for="name">Name: </label>
+            <input type="text" id="name" name="name" autocomplete="on" required="true">
+            <br><br>
+            <label for="email">From: </label>
+            <input type="email" id="email" name="email" autocomplete="on" required="true">
+            <br><br>
+            <label for="content">Message: </label>
+            <br><br>
+            <textarea id="content" name="content" autocomplete="off" required="true" rows="5" cols="50"></textarea>
+            <br>
+            <br>
+            <input type="submit" value="[Send]">
+        </form> 
+        <p id="emailResult"></p>
     </main>
 </body>
 </html>

@@ -15,6 +15,7 @@ class Router {
     async setupRoutes() {
         this.router.post('/create', async (req, res) => {
             const url = req.body.url;
+            this.client.log.debug(JSON.stringify(req.body))
             const validChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
             let unique = false;
             let short = '';

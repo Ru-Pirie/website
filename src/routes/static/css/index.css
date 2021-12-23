@@ -118,7 +118,7 @@ body {
 
   
   #sidebar {
-    width: 200px;
+    width: 300px;
     float: right;
     margin: 0 15px 2em 2em;
     position: relative;
@@ -176,7 +176,7 @@ body {
     outline: none;
   }
   
-  input[type="text"], textarea {
+  input[type="text"], textarea, input[type="email"]{
     background: transparent;
     color: inherit;
     border: 1px solid #666666;
@@ -186,6 +186,7 @@ body {
     font-size: inherit;
     margin: 0;
   }
+
   textarea {
     vertical-align: top;
   }
