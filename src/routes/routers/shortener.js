@@ -20,8 +20,10 @@ class Router {
             let unique = false;
             let short = '';
 
-            if (!/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/i.test(url)) return res.redirect(`/s?code=Invalid URL`)
-
+            if (!/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/i.test(url)) {
+                if (req.headers['user-agent'].toLowerCase().includes('sharex')) return res.end(JSON.stringify({ code: short }))
+                return res.redirect(`/s?code=Invalid URL`)
+            }
 
             const urlExists = await this.client.db.query('SELECT * FROM shorteners WHERE destination = ?', [ url ])
 
@@ -52,11 +54,11 @@ class Router {
                 const lastUsed = new Date(result[0].lastClicked)
 
                 const newHTML = `
-                <p><em>Shortened URL:</em> https://ru-pirie.com/s/${result[0].url}</p>
-                <p><em>Destination URL:</em> ${result[0].destination}</p>
-                <p><em>Times Clicked:</em> ${result[0].clicks}</p>
-                <p><em>Created At:</em> ${dateFormat(created, "dddd, mmmm dS, yyyy, h:MM:ss TT")} (${result[0].created})</p>
-                <p><em>Last Used:</em> ${dateFormat(lastUsed, "dddd, mmmm dS, yyyy, h:MM:ss TT")} (${result[0].lastClicked})</p>
+                    <p><em>Shortened URL:</em> https://ru-pirie.com/s/${result[0].url}</p>
+                    <p><em>Destination URL:</em> ${result[0].destination}</p>
+                    <p><em>Times Clicked:</em> ${result[0].clicks}</p>
+                    <p><em>Created At:</em> ${dateFormat(created, "dddd, mmmm dS, yyyy, h:MM:ss TT")} (${result[0].created})</p>
+                    <p><em>Last Used:</em> ${dateFormat(lastUsed, "dddd, mmmm dS, yyyy, h:MM:ss TT")} (${result[0].lastClicked})</p>
                 `
 
                 file = file.replace('{{INNER_HTML}}', newHTML)
