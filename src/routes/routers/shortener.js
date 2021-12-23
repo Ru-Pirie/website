@@ -19,11 +19,16 @@ class Router {
             let unique = false;
             let short = '';
 
-            if (!/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/.test(url)) return res.redirect(`/s?code=Invalid URL`)
+            if (!/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/i.test(url)) return res.redirect(`/s?code=Invalid URL`)
+
+
+            const urlExists = await this.client.db.query('SELECT * FROM shorteners WHERE destination = ?', [ url ])
+
+            if (urlExists.length === 1) return res.redirect(`/s?code=${urlExists[0].url}`);
 
             while (!unique) {
                 short = '';
-                for (var i = 0; i < 5; i++) short += validChars.charAt(Math.floor(Math.random() * validChars.length));
+                for (var i = 0; i < 6; i++) short += validChars.charAt(Math.floor(Math.random() * validChars.length));
                 
                 const result = await this.client.db.query('SELECT * FROM shorteners WHERE url = ?', [ short ])
                 if (result.length === 0) unique = true;
