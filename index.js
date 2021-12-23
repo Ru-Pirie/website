@@ -97,12 +97,19 @@ if (process.env.NODE_ENV === 'prod') {
         ca: ca,
     };
 
-    http.createServer(app).listen(80)
-    https.createServer(credentials, app).listen(443)
-    client.log.web('Listening on http and https')
+    http.createServer(app).listen(80, () => {
+        client.log.web(`Created HTTP server on 80.`)
+    })
+
+    https.createServer(credentials, app).listen(443, () => {
+        client.log.web(`Created HTTPS server on 443.`)
+    })
+    
 }  else {
-    http.createServer(app).listen(PORT)
-    client.log.web('Listening on http only')
+    http.createServer(app).listen(PORT, () => {
+        client.log.web(`Listening on port ${PORT}. Development environment.`)
+    })
+    
 }
 
 
