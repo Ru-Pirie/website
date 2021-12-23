@@ -7,6 +7,7 @@ const fs = require('fs');
 const http = require('http');
 const https = require('https');
 
+const path = require('path');
 const PORT = process.env.PORT || 3000;
 
 const Logger = require('./src/util/logger');
@@ -70,7 +71,7 @@ async function main() {
     await db.initialize();
     const files = await Walker.walk('./src/routes/routers')
 
-    files.files.forEach(async file => {
+    for (const file of files.files) {
         const Router = require(file.exact)
         const router = new Router(client);
 
@@ -78,13 +79,17 @@ async function main() {
 
         app.use(router.path, router.router)
         client.log.web(`${router.name} has been routed to ${router.path}`)
-    })
+    }
 
     client.log.info('Database created and synced')
     client.db = db;
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '/src/routes/static/pages/404.html'), 404)
+    })
 }
 
-main();
+main()
 
 if (process.env.NODE_ENV === 'prod') {
     const privateKey = fs.readFileSync('/etc/letsencrypt/live/ru-pirie.com/privkey.pem', 'utf8');
@@ -110,7 +115,5 @@ if (process.env.NODE_ENV === 'prod') {
         client.log.web(`Listening on port ${PORT}. Development environment.`)
     })
 }
-
-
 
 module.exports = client

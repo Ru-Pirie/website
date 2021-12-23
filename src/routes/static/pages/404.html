@@ -4,13 +4,81 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Not Found | Ru-Pirie</title>
-
-    <style>
-
-    </style>
+    <title>Ru-Pirie | URL Shortener</title>
+    <link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css"/>
+    <link rel="shortcut icon" href="/static/images/favicon.png"/>
 </head>
-<body>
-    <h1>boo</h1>
+<body onload="onLoad()">
+    <script>
+        function GetURLParameter(sParam)
+        {
+            var sPageURL = window.location.search.substring(1);
+            var sURLVariables = sPageURL.split('&');
+            for (var i = 0; i < sURLVariables.length; i++) 
+            {
+                var sParameterName = sURLVariables[i].split('=');
+                if (sParameterName[0] == sParam) 
+                {
+                    return sParameterName[1];
+                }
+            }
+        }
+
+        function onLoad() {
+            const code = GetURLParameter('code')
+            if (!code) {
+                document.getElementById("urlResult").innerHTML = 'Enter a URL to start...'
+            } else if (decodeURI(code) === 'Invalid URL') { 
+                document.getElementById("urlResult").innerHTML = 'URL was not valid!'
+            } else if (decodeURI(code) === 'Shortened URL does not exist!') { 
+                document.getElementById("urlResult").innerHTML = 'Shortened URL does not exist.\nCreate one!'
+            } else {
+                document.getElementById("urlResult").innerHTML = `Shortened URL: <a href="${location.protocol}//${location.host}/s/${code}">${location.protocol}//${location.host}/s/${code}</a>`
+            }  
+        }
+    </script> 
+    
+    <header>
+        <div>
+          <h1 class="title-global"><a href="/">&nbsp;&nbsp;Ru-Pirie</a></h1>
+          <nav>
+            <ul>
+              <li><a href="/about">[About]</a></li>
+              <li><a href="/portfolio">[Portfolio]</a></li>
+              <li><a href="/projects">[Projects]</a></li>
+              <li><a href="/iAPI">[API]</a></li>
+              <li><a href="/contact">[Contact]</a></li>
+              <li><a href="/static">[Statics]</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <div>
+            <h1>&nbsp;<em>JS/.NET Dev</em></h1>
+            <nav>
+              <ul>
+                <li><a href="/s/github">[GitHub]</a></li>
+                <li><a href="/s">[URL Shortener]</a></li>
+                <li><a href="/advent-of-code">[Advent Of Code]</a></li>
+                <li><a href="/project-euler">[Project Euler]</a></li>
+              </ul>
+            </nav>
+          </div>
+    </header>
+
+    <style type="text/css">
+        div.main h1 {
+            font-size: 100px
+        }
+    </style>
+
+    <main>
+        <div class="main">
+            <h1>404</h1>
+            <h2>Oops, my bad</h2>
+            <p>Page Not Found</p>
+        </div>
+    </main>
 </body>
 </html>
