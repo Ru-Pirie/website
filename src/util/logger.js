@@ -10,7 +10,11 @@ class Logger {
     error = (message) => console.log(`${chalk.bold.bgRed.whiteBright(` | ERROR         `)}${this.getDate()}${chalk.bold.bgRed.whiteBright(` `)} ${chalk.bold.red(message)}`)
     debug = (message) => console.log(`${chalk.bold.bgHex('#6a0dad').whiteBright(` | DEBUG         `)}${this.getDate()}${chalk.bold.bgHex('#6a0dad').whiteBright(` `)} ${chalk.bold.hex('#6a0dad')(message)}`)
     web = (message) => console.log(`${chalk.bold.bgBlue.whiteBright(` | WEBSITE       `)}${this.getDate()}${chalk.bold.bgBlue.whiteBright(` `)} ${chalk.bold.blue(message)}`)
-    db = (message) => console.log(`${chalk.bold.bgMagenta.whiteBright(` | DATABASE      `)}${this.getDate()}${chalk.bold.bgMagenta.whiteBright(` `)} ${chalk.bold.magenta(message)}`)
+    db = (message) => {
+        if (!message.includes('accessLogs')) { 
+            console.log(`${chalk.bold.bgMagenta.whiteBright(` | DATABASE      `)}${this.getDate()}${chalk.bold.bgMagenta.whiteBright(` `)} ${chalk.bold.magenta(message)}`)
+        }
+    }
     other = (message) => console.log(`${chalk.bold.bgCyan.whiteBright(` | MISCELLANEOUS` )}${this.getDate()}${chalk.bold.bgCyan.whiteBright(` `)} ${chalk.bold.cyan(message)}`)
 }
 

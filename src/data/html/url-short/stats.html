@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/index.css"/>
     <link rel="shortcut icon" href="/static/images/favicon.png"/>
 </head>
-<body>
+<body onload="onLoad()">    
     <header>
         <div>
           <h1 class="title-global"><a href="/">&nbsp;&nbsp;Ru-Pirie</a></h1>
@@ -30,16 +30,20 @@
             <nav>
               <ul>
                 <li><a href="/s/github">[GitHub]</a></li>
-                <li><a href="/s">[URL Shortener]</a></li>
+                <li><b><a href="/s">[URL Shortener]</a></b></li>
                 <li><a href="/advent-of-code">[Advent Of Code]</a></li>
                 <li><a href="/project-euler">[Project Euler]</a></li>
               </ul>
             </nav>
           </div>
+
     </header>
+    
+
 
     <main>
         <article>
+            <h1>Short URL Stats:</h1>
             {{INNER_HTML}}
         </article>
     </main>

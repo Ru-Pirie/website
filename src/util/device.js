@@ -36,7 +36,7 @@ module.exports = (client, agent) => {
         POST.split(' ').forEach(detail => { parsed.details.push({ name: detail.split('/')[0], version: detail.split('/')[1] })})
     }
     catch (e){
-        client.log.warn(`NON-STANDARD DEVICE DETECTED ${agent.split(' ')[0]} (FULL: ${agent})`)
+        client.log.warn(`NON-STANDARD DEVICE DETECTED ${agent ? agent.split(' ')[0] : ''} (FULL: ${agent})`)
         client.log.error(e.message)
         return agent.split(' ')[0];
     }
