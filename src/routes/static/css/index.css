@@ -1,5 +1,8 @@
 /* This was taken from Advent of Code not my own css. If there is an issue with this please email me development@ru-pirie.com */
 
+html{ scroll-behavior: smooth;}
+
+
 body {
     background: #0f0f23; /*337 x 5*/
     color: #cccccc;
@@ -440,12 +443,6 @@ body {
     color: #ffffff;
     text-shadow: 0 0 5px #ffffff;
   }
-  .leaderboard-daydesc-first {
-    color: #9999cc;
-  }
-  .leaderboard-daydesc-both {
-    color: #ffff66;
-  }
   .leaderboard-entry {
     white-space: pre;
   }
@@ -479,12 +476,11 @@ body {
   .privboard-name {
     vertical-align: text-bottom;
   }
-  .privboard-days > span    { display: inline-block; color: #333333; }
-  .privboard-days > a       { display: inline-block; }
-  .privboard-star-locked    { visibility: hidden; }
-  .privboard-star-unlocked  { color: #333333; }
-  .privboard-star-firstonly { color: #9999cc; }
-  .privboard-star-both      { color: #ffff66; }
+
+  .hidden    { visibility: hidden; }
+  .grey  { color: #333333; }
+  .purple { color: #9999cc; }
+  .gold      { color: #ffff66; }
   .privboard-delbtn { opacity:.33; }
   .privboard-row:hover .privboard-delbtn { opacity:1; }
   
