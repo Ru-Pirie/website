@@ -37,7 +37,6 @@ module.exports = (client, agent) => {
     }
     catch (e){
         client.log.warn(`NON-STANDARD DEVICE DETECTED ${agent ? agent.split(' ')[0] : ''} (FULL: ${agent})`)
-        client.log.error(e.message)
         return agent ? agent.split(' ')[0] : 'None';
     }
     
