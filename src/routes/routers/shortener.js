@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const dateFormat = require('dateformat');
 
 class Router {
     constructor(client) {
@@ -33,6 +34,32 @@ class Router {
             res.redirect(`/s?code=${short}`)
         })
 
+        this.router.all('/stats/:code', async (req, res) => {
+            const code = req.params.code;
+
+            const result = await this.client.db.query('SELECT * FROM shorteners WHERE url = ?', [ code ])
+            
+            if (result.length === 1) {
+                let file = fs.readFileSync(path.join(__dirname, '../../data/html/url-short/stats.html')).toString()
+
+                const created = new Date(result[0].created)
+                const lastUsed = new Date(result[0].lastClicked)
+
+                const newHTML = `
+                <p><em>Shortened URL:</em> https://ru-pirie.com/s/${result[0].url}</p>
+                <p><em>Destination URL:</em> ${result[0].destination}</p>
+                <p><em>Times Clicked:</em> ${result[0].clicks}</p>
+                <p><em>Created At:</em> ${dateFormat(created, "dddd, mmmm dS, yyyy, h:MM:ss TT")} (${result[0].created})</p>
+                <p><em>Last Used:</em> ${dateFormat(lastUsed, "dddd, mmmm dS, yyyy, h:MM:ss TT")} (${result[0].lastClicked})</p>
+                `
+
+                file = file.replace('{{INNER_HTML}}', newHTML)
+                res.end(file)
+            } else {
+                res.redirect('/s?code=Shortened URL does not exist!');
+            }
+        })
+
         this.router.all('/:code', async (req, res) => {
             const code = req.params.code;
 
@@ -54,29 +81,18 @@ class Router {
             if (result.length === 1) {
                 let file = fs.readFileSync(path.join(__dirname, '../../data/html/url-short/stats.html')).toString()
 
-
-                const unix_timestamp = result[0].created
-                const date = new Date(unix_timestamp);
-                const hours = date.getHours();
-                const minutes = "0" + date.getMinutes();
-                const seconds = "0" + date.getSeconds();
-                
-                // Will display time in 10:30:23 format
-                const formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-                
-                console.log(formattedTime);
+                const created = new Date(result[0].created)
+                const lastUsed = new Date(result[0].lastClicked)
 
                 const newHTML = `
                 <p><em>Shortened URL:</em> https://ru-pirie.com/s/${result[0].url}</p>
                 <p><em>Destination URL:</em> ${result[0].destination}</p>
                 <p><em>Times Clicked:</em> ${result[0].clicks}</p>
-                <p><em>Created At:</em> ${result[0].created}</p>
-                <p><em>Last Used:</em> ${result[0].lastClicked}</p>
+                <p><em>Created At:</em> ${dateFormat(created, "dddd, mmmm dS, yyyy, h:MM:ss TT")} (${result[0].created})</p>
+                <p><em>Last Used:</em> ${dateFormat(lastUsed, "dddd, mmmm dS, yyyy, h:MM:ss TT")} (${result[0].lastClicked})</p>
                 `
 
                 file = file.replace('{{INNER_HTML}}', newHTML)
-
-                console.log(file)
                 res.end(file)
             } else {
                 res.redirect('/s?code=Shortened URL does not exist!');
