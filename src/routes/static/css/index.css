@@ -478,9 +478,13 @@ body {
   }
 
   .hidden    { visibility: hidden; }
+
+  
   .grey  { color: #333333; }
   .purple { color: #9999cc; }
-  .gold      { color: #ffff66; }
+  .gold { color: #ffff66; }
+
+
   .privboard-delbtn { opacity:.33; }
   .privboard-row:hover .privboard-delbtn { opacity:1; }
   
