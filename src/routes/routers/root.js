@@ -28,9 +28,6 @@ class Router {
                 })
             } else if (file.name.startsWith('special_')){
                 // deal with special case 
-                this.router.all(routePath.replace('special_', ''), (req, res) => {
-                    return res.send('Special Condition file')
-                })
             }
         })
 

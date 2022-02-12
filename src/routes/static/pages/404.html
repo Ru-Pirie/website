@@ -4,81 +4,65 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ru-Pirie | URL Shortener</title>
+    <title>Ru-Pirie | Projects</title>
     <link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
-    <link rel="stylesheet" type="text/css" href="/static/css/index.css"/>
+    <link rel="stylesheet" id="mainStyle" type="text/css" href="/static/css/index.css"/>
     <link rel="shortcut icon" href="/static/images/favicon.png"/>
+    <script src="/static/scripts/index.js"></script>
+    <script src="https://kit.fontawesome.com/5bd5b937e0.js" crossorigin="anonymous"></script>
 </head>
-<body onload="onLoad()">
-    <script>
-        function GetURLParameter(sParam)
-        {
-            var sPageURL = window.location.search.substring(1);
-            var sURLVariables = sPageURL.split('&');
-            for (var i = 0; i < sURLVariables.length; i++) 
-            {
-                var sParameterName = sURLVariables[i].split('=');
-                if (sParameterName[0] == sParam) 
-                {
-                    return sParameterName[1];
-                }
-            }
-        }
+<body>
+    <div class="main">
+        <div class="centerContent">
+            <div class="top">
+                <div class="logo">
+                    <p onclick="window.location.href='/'">Ru-Pirie</p>
+                </div>
+                <div class="menu">
+                    <a href="/about">About</a>
+                    <div>|</div>
+                    <a href="/projects">Projects</a>
+                    <div>|</div>
+                    <a href="/contact">Contact</a>
+                    <div>|</div>
+                    <a href="/s">URL Shortener</a>
+                    <div>|</div>
+                    <a href="/advent-of-code">AoC</a>
+                    <div>|</div>
+                    <a href="/project-euler">Euler</a>
+                </div>
+                <div class="other">
+                    <button onclick="toggleDarkMode()"><i id="themeIcon" class="fa-solid fa-moon"></i> Change Theme</button>
+                </div>
+            </div>
 
-        function onLoad() {
-            const code = GetURLParameter('code')
-            if (!code) {
-                document.getElementById("urlResult").innerHTML = 'Enter a URL to start...'
-            } else if (decodeURI(code) === 'Invalid URL') { 
-                document.getElementById("urlResult").innerHTML = 'URL was not valid!'
-            } else if (decodeURI(code) === 'Shortened URL does not exist!') { 
-                document.getElementById("urlResult").innerHTML = 'Shortened URL does not exist.\nCreate one!'
-            } else {
-                document.getElementById("urlResult").innerHTML = `Shortened URL: <a href="${location.protocol}//${location.host}/s/${code}">${location.protocol}//${location.host}/s/${code}</a>`
-            }  
-        }
-    </script> 
+            <div class="middle">
+                <div class="errorBox">
+                    <h1>404</h1>
+                    <h2>Oops, my bad</h2>
+                    <p>Page Not Found</p>
+                </div>
+            </div>
+        
+            <div class="bottom">
+                <div class="bottomSpan">
+                    <div class="left">
+                        <a><i class="fa-brands fa-github-square"></i> Github</a>
+                        <a><i class="fa-brands fa-twitter-square"></i> Twitter</a>
+                        <a><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                        <a><i class="fa-brands fa-youtube-square"></i> YouTube</a>
+                        <a><i class="fa-solid fa-envelope"></i> Contact</a>
+                        <a><i class="fa-solid fa-user-shield"></i> API</a>
+                        <a><i class="fa-brands fa-discord"></i> Discord</a>
+                    </div>
+                    <div class="right">
+                        <a href="admin"><i class="fa-solid fa-file-code"></i></a> 
+                        <a>Nothing to see here yet!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
-    <header>
-        <div>
-          <h1 class="title-global"><a href="/">&nbsp;&nbsp;Ru-Pirie</a></h1>
-          <nav>
-            <ul>
-              <li><a href="/about">[About]</a></li>
-              <li><a href="/portfolio">[Portfolio]</a></li>
-              <li><a href="/projects">[Projects]</a></li>
-              <li><a href="/iAPI">[API]</a></li>
-              <li><a href="/contact">[Contact]</a></li>
-              <li><a href="/static">[Statics]</a></li>
-            </ul>
-          </nav>
-        </div>
-
-        <div>
-            <h1>&nbsp;<em>JS/.NET Dev</em></h1>
-            <nav>
-              <ul>
-                <li><a href="/s/github">[GitHub]</a></li>
-                <li><a href="/s">[URL Shortener]</a></li>
-                <li><a href="/advent-of-code">[Advent Of Code]</a></li>
-                <li><a href="/project-euler">[Project Euler]</a></li>
-              </ul>
-            </nav>
-          </div>
-    </header>
-
-    <style type="text/css">
-        div.main h1 {
-            font-size: 100px
-        }
-    </style>
-
-    <main>
-        <div class="main">
-            <h1>404</h1>
-            <h2>Oops, my bad</h2>
-            <p>Page Not Found</p>
-        </div>
-    </main>
 </body>
 </html>

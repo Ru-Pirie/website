@@ -31,7 +31,7 @@ class Router {
 
             while (!unique) {
                 short = '';
-                for (var i = 0; i < 6; i++) short += validChars.charAt(Math.floor(Math.random() * validChars.length));
+                for (var i = 0; i < 5; i++) short += validChars.charAt(Math.floor(Math.random() * validChars.length));
                 
                 const result = await this.client.db.query('SELECT * FROM shorteners WHERE url = ?', [ short ])
                 if (result.length === 0) unique = true;

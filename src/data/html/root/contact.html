@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ru-Pirie | Contact Me</title>
+    <title>Ru-Pirie | Home</title>
     <link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
-    <link rel="stylesheet" type="text/css" href="/static/css/index.css"/>
+    <link rel="stylesheet" id="mainStyle" type="text/css" href="/static/css/index.css"/>
     <link rel="shortcut icon" href="/static/images/favicon.png"/>
-</head>
-<body onload="onLoad()">
+    <script src="/static/scripts/index.js"></script>
+    <script src="https://kit.fontawesome.com/5bd5b937e0.js" crossorigin="anonymous"></script>
     <script>
         function GetURLParameter(sParam)
         {
@@ -33,47 +33,34 @@
         }
 
     </script>
+</head>
 
-    <header>
-        <div>
-          <h1 class="title-global"><a href="/">&nbsp;&nbsp;Ru-Pirie</a></h1>
-          <nav>
-            <ul>
-              <li><a href="/about">[About]</a></li>
-              <li><a href="/portfolio">[Portfolio]</a></li>
-              <li><a href="/projects">[Projects]</a></li>
-              <li><a href="/iAPI">[API]</a></li>
-              <li><b><a href="/contact">[Contact]</a></b></li>
-              <li><a href="/static">[Statics]</a></li>
-            </ul>
-          </nav>
-        </div>
+<body onload="onLoad()">
+    <div class="main">
+        <div class="centerContent">
+            <div class="top">
+                <div class="logo">
+                    <p onclick="window.location.href='/'">Ru-Pirie</p>
+                </div>
+                <div class="menu">
+                    <a href="/about">About</a>
+                    <div>|</div>
+                    <a href="/projects">Projects</a>
+                    <div>|</div>
+                    <a href="/contact">Contact</a>
+                    <div>|</div>
+                    <a href="/s">URL Shortener</a>
+                    <div>|</div>
+                    <a href="/advent-of-code">AoC</a>
+                    <div>|</div>
+                    <a href="/project-euler">Euler</a>
+                </div>
+                <div class="other">
+                    <button onclick="toggleDarkMode()"><i id="themeIcon" class="fa-solid fa-moon"></i> Change Theme</button>
+                </div>
+            </div>
 
-        <div>
-            <h1>&nbsp;<em>JS/.NET Dev</em></h1>
-            <nav>
-              <ul>
-                <li><a href="/s/github">[GitHub]</a></li>
-                <li><a href="/s">[URL Shortener]</a></li>
-                <li><a href="/advent-of-code">[Advent Of Code]</a></li>
-                <li><a href="/project-euler">[Project Euler]</a></li>
-              </ul>
-            </nav>
-          </div>
-    </header>
-    
-
-    <div id="sidebar">
-        <code>
-            I aim to read all emails sent to me however there is a chance I may miss it so if this is something urgent then please mention that in your message.
-            - Ru
-            <br>
-            <br>
-            For development questions and commisions please email developemnt@ru-pirie.com directly.
-        </code>
-    </div>
-
-    <main>
+    <div class="middle">
 
         <h1>Send me an Email</h1>
         <form action="/contact/email" method="post">
@@ -91,6 +78,26 @@
             <input type="submit" value="[Send]">
         </form> 
         <p id="emailResult"></p>
-    </main>
+    </div>
+    <div class="bottom">
+        <div class="bottomSpan">
+            <div class="left">
+                <a><i class="fa-brands fa-github-square"></i> Github</a>
+                <a><i class="fa-brands fa-twitter-square"></i> Twitter</a>
+                <a><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                <a><i class="fa-brands fa-youtube-square"></i> YouTube</a>
+                <a><i class="fa-solid fa-envelope"></i> Contact</a>
+                <a><i class="fa-solid fa-user-shield"></i> API</a>
+                <a><i class="fa-brands fa-discord"></i> Discord</a>
+            </div>
+            <div class="right">
+                <a href="admin"><i class="fa-solid fa-file-code"></i></a> 
+                <a>Nothing to see here yet!</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
 </body>
 </html>
