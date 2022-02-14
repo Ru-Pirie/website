@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ru-Pirie | Projects</title>
+    <title>CompSci | Access Modifiers</title>
     <link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
     <link rel="stylesheet" id="mainStyle" type="text/css" href="/static/css/index.css"/>
     <link rel="shortcut icon" href="/static/images/favicon.png"/>
@@ -37,12 +37,49 @@
             </div>
 
             <div class="middle">
-                <div class="errorBox">
-                    This page is not quite done yet. Check back soon!
+                <h1>Access Modifiers</h1>
+                <p>These allow is to change what parts of the code can access other parts.</p>
+                <br>
+                <h2>Definition</h2>
+                <p>Access modifiers are used to restrict code elements from use by other parts of the code.</p>
+                <p>They can be applied to a class, variable and subroutine / function definitions.</p>
+                <br>
+                <h3>Public</h3>
+                <p>This means that this can be accessed from anywhere within the code.</p>
+                <h3>Private</h3>
+                <p>This means that the method / variable / class can only be accessed from within the class itself. This makes it not possible to be accessed outside of the parent class.</p>
+                <br>
+                <h2>Why go private?</h2>
+                <p>It hides the information that doesn't need to be known (<b>Abstraction</b>!)</p>
+                <p>It also allows the programmer to control how objects properties are accessed and used. For example if you only want a variable to increased by +1 at at time not randomly set to a value.</p>
+                <pre>
+                    <code>
+    public class TheClass {
+        private int variable;
+        public int getVariable() {
+            return variable;
+        }
+    
+        public void incrementVariable() {
+            variable++;
+        }
+    }
+                    </code>
+                </pre>
+                
+                
+                
+                
+                <br>
+                <br>
+                <div class="box">
+                    <button onclick="window.location.href='/compsci'" class="pwettyButton">Home</button>
                 </div>
+
             </div>
         
             <div class="bottom">
+                <p>This is made specifically for <c style="color: var(--info-color)">Barton Peveril Students</c> and is 100% <b style="color: var(--error-color)">NOT</b> perfect and may contain errors!</p>
                 <div class="bottomSpan">
                     <div class="left">
                         <a><i class="fa-brands fa-github-square"></i> Github</a>
@@ -54,7 +91,7 @@
                         <a><i class="fa-brands fa-discord"></i> Discord</a>
                     </div>
                     <div class="right">
-<a href="/compsci"><i class="fa-solid fa-laptop-code"></i> CompSci Notes</a> 
+                    <a href="/compsci"><i class="fa-solid fa-laptop-code"></i> CompSci Notes</a> 
                         <a href="/admin"><i class="fa-solid fa-file-code"></i> Admin</a> 
         
                     </div>

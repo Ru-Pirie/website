@@ -19,11 +19,11 @@ class Router {
         files.files.forEach(async file => {
             const routePath = file.exact.split(this.name)[1].replace(/\\/gi, '/').split('.')[0]
             if (file.name === 'index.html') {
-                this.router.all(routePath.split('index')[0], (req, res) => {
+                this.router.get(routePath.split('index')[0], (req, res) => {
                     return res.sendFile(file.exact)
                 })
             } else if (!file.name.startsWith('special_')) {
-                this.router.all(routePath, (req, res) => {
+                this.router.get(routePath, (req, res) => {
                     return res.sendFile(file.exact)
                 })
             } else if (file.name.startsWith('special_')){

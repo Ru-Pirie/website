@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ru-Pirie | Projects</title>
+    <title>CompSci | Intro to OOP</title>
     <link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
     <link rel="stylesheet" id="mainStyle" type="text/css" href="/static/css/index.css"/>
     <link rel="shortcut icon" href="/static/images/favicon.png"/>
@@ -37,12 +37,46 @@
             </div>
 
             <div class="middle">
-                <div class="errorBox">
-                    This page is not quite done yet. Check back soon!
+                <h1>Intro to Object Orientated Programming 🦆</h1>
+                <p>An object can be a list or string etc... However there is such a thing called a class which can be thought of as a template for a group of related items. For example Ducks.</p>
+                <p>If an object reference is a local variable then it will be stored in the call stack, If it is part of a object then it will be stored in the heap NOT the stack. Not all object references are stored in the stack. Some could be stored in the heap. The object itself will always be stored in the heap.</p>
+                <br>
+                <h2>Time for a quackers DUCK example:</h2>
+                <p>We could have the <b>behaviour</b> of the duck which would be methods of functions:</p>
+                <ul>
+                    <li>Eat</li>
+                    <li>Sleep</li>
+                    <li>CommitCrime</li>
+                </ul>
+                <p>For a ducks <b>state</b> we could have properties or attributes or variables:</p>
+                <ul>
+                    <li>Floatability</li>
+                    <li>Crimes</li>
+                    <li>Hunger</li>
+                </ul>
+                <br>
+                <h2>IMPORTANT</h2>
+                <ul>
+                    <li>Encapsulation</li>
+                        <ol>
+                            <li> Combining properties and methods together into an object.</li>
+                            <li> Being able to restrict access to an object's state/behaviour.</li>
+                        </ol>
+                    <li>A class is like a blueprint or template for objects. It exists in the code.</li>
+                    <li>An object is an instance of a class. It exists in memory (the heap).</li>
+                    <li>Instantiation is the process of creating an object from the class.</li>
+                </ul>
+                
+                <br>
+                <br>
+                <div class="box">
+                    <button onclick="window.location.href='/compsci'" class="pwettyButton">Home</button>
                 </div>
+
             </div>
         
             <div class="bottom">
+                <p>This is made specifically for <c style="color: var(--info-color)">Barton Peveril Students</c> and is 100% <b style="color: var(--error-color)">NOT</b> perfect and may contain errors!</p>
                 <div class="bottomSpan">
                     <div class="left">
                         <a><i class="fa-brands fa-github-square"></i> Github</a>
@@ -54,7 +88,7 @@
                         <a><i class="fa-brands fa-discord"></i> Discord</a>
                     </div>
                     <div class="right">
-<a href="/compsci"><i class="fa-solid fa-laptop-code"></i> CompSci Notes</a> 
+                    <a href="/compsci"><i class="fa-solid fa-laptop-code"></i> CompSci Notes</a> 
                         <a href="/admin"><i class="fa-solid fa-file-code"></i> Admin</a> 
         
                     </div>

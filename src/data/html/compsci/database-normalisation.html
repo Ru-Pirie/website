@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompSci | Database Normalisation</title>
+    <link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" id="mainStyle" type="text/css" href="/static/css/index.css"/>
+    <link rel="shortcut icon" href="/static/images/favicon.png"/>
+    <script src="/static/scripts/index.js"></script>
+    <script src="https://kit.fontawesome.com/5bd5b937e0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="centerContent">
+            <div class="top">
+                <div class="logo">
+                    <p onclick="window.location.href='/'">Ru-Pirie</p>
+                </div>
+                <div class="menu">
+                    <a href="/about">About</a>
+                    <div>|</div>
+                    <a href="/projects">Projects</a>
+                    <div>|</div>
+                    <a href="/contact">Contact</a>
+                    <div>|</div>
+                    <a href="/s">URL Shortener</a>
+                    <div>|</div>
+                    <a href="/advent-of-code">AoC</a>
+                    <div>|</div>
+                    <a href="/project-euler">Euler</a>
+                </div>
+                <div class="other">
+                    <button onclick="toggleDarkMode()"><i id="themeIcon" class="fa-solid fa-moon"></i> Change Theme</button>
+                </div>
+            </div>
+
+            <div class="middle">
+                <h1>Database Normalisation</h1>
+                
+                <p><b>Relational Database</b> - A collection of tables linked by key fields</p>
+                <p><b>Normalisation</b> - the process of decomposing a flat-file into the best possible design for a relational database.</p>
+                <br>
+                <h3>Notation:</h3>
+                <ul>
+                    <li><b>*</b> is a foreign key</li>
+                    <li><b><u>Underlined</u></b> is a primary key</li>
+                </ul>
+                <br>
+                <h3>Stages of Normalisation</h3>
+                <ol>
+                    <li>First Normal Form</li>
+                    <li>Second Normal Form</li>
+                    <li>Third Normal Form (Final Form)</li>
+                </ol>
+                <p>Each stage of the normalisation will achieve a set of goals that will then allow us to proceed onto the next form.</p>
+                <br>
+                
+                <h2>Example</h2>
+                <p>A publishing company want to create a database to keep data about their authors and each of the books that author has published. Each author has an agent, each published book has a category and each book has a specified royalty rate.</p>
+                <br>
+                <h3>Un-normalised form (UNF)</h3>
+                <p><b>AUTHOR</b> Attributes</p>
+                <ul>
+                    <li>Author Number</li>
+                    <li>Surname</li>
+                    <li>Forename</li>
+                    <li>Address</li>
+                    <li>Phone Number</li>
+                    <li>Agent Number</li>
+                    <li>Agent Aame</li>
+                    <li>Agent Address</li>
+                    <li>Book Title</li>
+                    <li>Book Category</li>
+                    <li>Royalty Rate</li>
+                </ul>
+                <p><em>A bit of a mess</em></p>
+                <br>
+                <h3>First Normal Form (1NF)</h3>
+                <p>Check for any repeating groups. If there are repeating groups then remove the repeating group of attributes and use them to form a new entity.</p>
+                <p>The repeating group is a structure of data that is repeated over multiple records.</p>
+                <p><b>Book Title</b>, <b>Book Category</b> and <b>Royalty Rate</b> in our example is the repeating group.</p>
+                <b>AUTHOR</b>
+                <ul>
+                    <li><u>Author Number</u></li>
+                    <li>Surname</li>
+                    <li>Forename</li>
+                    <li>Address</li>
+                    <li>Phone Number</li>
+                    <li>Agent Number</li>
+                    <li>Agent Aame</li>
+                    <li>Agent Address</li>
+                </ul>
+                <b>PUBLICATION</b>
+                <ul>
+                    <li>Book Title</li>
+                    <li>Book Category</li>
+                    <li>Royalty Rate</li>
+                </ul>
+                <p>Next is deciding the <b>PRIMARY KEY</b>s of the tables. We will pick Book Title and Author Number in this case. As we have done this they will underline them to denote the primary keyness.</p>
+                <p>Something is missing however, the link between the tables. So to do this we will take the primary key from the initial table and add it into the 1NF table. So <b>PUBLICATION</b> will become:</p>
+                <ul>
+                    <li><em><u>Author Number*</u></em></li>
+                    <li><u>Book Title</u></li>
+                    <li>Book Category</li>
+                    <li>Royalty Rate</li>
+                </ul>
+                <p>You may see that the Author Number is both a primary key, indicated by the underlining, and also a foreign key indicated by the *. This has now become a composite key, this is when an field has multiple attributes.</p>
+                <br>
+
+                <h2>Second Normal Form (2NF)</h2>
+                <p>Any tables with a composite key need to be checked to see if all of their non-key attributes depend on each attribute in the composite key.</p>
+                <p>Taking the publication table as an example:</p>
+                <pre>
+                    <code>
+    PUBLICATION(Author number*, Book title, Book category, Royalty rate)
+
+    An example here is that both the Book Category and Royalty Rate depend
+    on book title but NOT Author number.
+    
+    PUBLICATION(Author number*, Book title, Book category, Royalty rate) 
+                    </code>
+                </pre>                
+                <p>Therefor we split the table out.</p>
+                <b>AUTHOR</b>
+                <ul>
+                    <li><u>Author Number</u></li>
+                    <li>Surname</li>
+                    <li>Forename</li>
+                    <li>Address</li>
+                    <li>Phone Number</li>
+                    <li>Agent Number</li>
+                    <li>Agent Name</li>
+                    <li>Agent Address</li>
+                </ul>
+                <b>PUBLICATION</b>
+                <ul>
+                    <li><em><u>Author Number*</u></em></li>
+                    <li><em><u>Book Title*</u></em></li>
+                </ul>
+                <b>BOOK TITLE</b>
+                <ul>
+                    <li><u>Book Title</u></li>
+                    <li>Book Category</li>
+                    <li>Royalty Rates</li>
+                </ul>
+                <br>
+
+                <h2>Third Normal Form (3NF)</h2>
+                <p>In order to get to third normal for all tables (not just those with composite keys like 2NF) must have all of their non key attributes only dependant on their primary key.</p>
+                <em>Each attribute must depend on the key, the whole key, and nothing but the key.</em>
+                <p>There should also be no mutual dependance, a tables non-key attributes must be individual apart from the dependance on the primary key.</p>
+                <p>In our example we can see that the agent’s info has interdependencies so we need to split it out leaving the agents identifying field as a foreign key in the table.</p>
+                <b>AUTHOR</b>
+                <ul>
+                    <li><u>Author Number</u></li>
+                    <li>Surname</li>
+                    <li>Forename</li>
+                    <li>Address</li>
+                    <li>Phone Number</li>
+                    <li><em>Agent Number*</em></li>
+                </ul>
+                <b>AGENT</b>
+                <ul>
+                    <li><u>Agent Number</u></li>
+                    <li>Agent Name</li>
+                    <li>Agent Address</li>
+                </ul>                
+                <b>PUBLICATION</b>
+                <ul>
+                    <li><em><u>Author Number*</u></em></li>
+                    <li><em><u>Book Title*</u></em></li>
+                </ul>
+                <b>BOOK</b>
+                <ul>
+                    <li>Book Title</li>
+                    <li>Book Category</li>
+                    <li>Royalty Rates</li>
+                </ul>
+                <p>As well as this however there is a second interdependency which in this case it he royalty rate and the book category so we split that out as well.</p>
+                <b>BOOK</b>
+                <ul>
+                    <li><u>Book Title</u></li>
+                    <li><em>Book Category*</em></li>
+                </ul>
+                <b>ROYALTY</b>
+                <ul>
+                   <li><u>Book Category</u></li>
+                   <li>Royalty Rates</li>
+                </ul>
+                <h3>That's it!!! We are now in final normal form... for A level that is...</h3>
+                <br>
+
+                <h2>Final Database</h2>
+                <b>AUTHOR</b>
+                <ul>
+                   <li><u>Author Number</u></li>
+                   <li>Surname</li>
+                   <li>Forename</li>
+                   <li>Address</li>
+                   <li>Phone Number</li>
+                   <li><em>Agent Number*</em></li>
+                </ul>
+                <b>AGENT</b>
+                <ul>
+                    <li><u>Agent Number</u></li>
+                    <li>Agent Name</li>
+                    <li>Agent Address</li>
+                </ul>
+                <b>PUBLICATION</b>
+                <ul>
+                    <li><em>Author Number*</em></li>
+                    <li><em>Book Title*</em></li>
+                </ul>
+                <b>BOOK</b>
+                <ul>
+                    <li><u>Book Title</u></li>
+                    <li><em>Book Category*</em></li>
+                </ul>
+                <b>ROYALTY</b>
+                <ul>
+                    <li><u>Book Category</u></li>
+                    <li>Royalty Rates</li>
+                </ul>
+
+                <br>
+                <br>
+                <div class="box">
+                    <button onclick="window.location.href='/compsci'" class="pwettyButton">Home</button>
+                </div>
+
+            </div>
+        
+            <div class="bottom">
+                <p>This is made specifically for <c style="color: var(--info-color)">Barton Peveril Students</c> and is 100% <b style="color: var(--error-color)">NOT</b> perfect and may contain errors!</p>
+                <div class="bottomSpan">
+                    <div class="left">
+                        <a><i class="fa-brands fa-github-square"></i> Github</a>
+                        <a><i class="fa-brands fa-twitter-square"></i> Twitter</a>
+                        <a><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                        <a><i class="fa-brands fa-youtube-square"></i> YouTube</a>
+                        <a href="/contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+                        <a><i class="fa-solid fa-user-shield"></i> API</a>
+                        <a><i class="fa-brands fa-discord"></i> Discord</a>
+                    </div>
+                    <div class="right">
+                    <a href="/compsci"><i class="fa-solid fa-laptop-code"></i> CompSci Notes</a> 
+                        <a href="/admin"><i class="fa-solid fa-file-code"></i> Admin</a> 
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

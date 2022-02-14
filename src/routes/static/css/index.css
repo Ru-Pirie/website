@@ -333,3 +333,39 @@ button {
     margin: 4px 2px;
     cursor: pointer;
 }
+
+input[type="text"] {
+    width: 50%;
+    color: red;
+    font-family: 'Ubuntu Mono', monospace;
+    text-align: center;
+    font-size: 1.2em;
+    height: 4vh;
+    background-color: var(--sub-color);
+}
+
+.confirmTitle {
+    color: var(--error-color);
+}
+
+.box {
+    text-align: center;
+    padding: 10px; 
+    width: 100%;
+}
+
+textarea {
+    width: 50%;
+    color: var(--bg-color);
+    font-weight: lighter;
+    font-family: 'Ubuntu Mono', monospace;
+    text-align: center;
+    font-size: 1.2em;
+    height: 20vh;
+    padding: 10px;
+    background-color: var(--sub-color);
+}
+
+b {
+    color: var(--success-color);
+}

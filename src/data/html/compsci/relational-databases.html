@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompSci | Relational Databases</title>
+    <link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" id="mainStyle" type="text/css" href="/static/css/index.css"/>
+    <link rel="shortcut icon" href="/static/images/favicon.png"/>
+    <script src="/static/scripts/index.js"></script>
+    <script src="https://kit.fontawesome.com/5bd5b937e0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="centerContent">
+            <div class="top">
+                <div class="logo">
+                    <p onclick="window.location.href='/'">Ru-Pirie</p>
+                </div>
+                <div class="menu">
+                    <a href="/about">About</a>
+                    <div>|</div>
+                    <a href="/projects">Projects</a>
+                    <div>|</div>
+                    <a href="/contact">Contact</a>
+                    <div>|</div>
+                    <a href="/s">URL Shortener</a>
+                    <div>|</div>
+                    <a href="/advent-of-code">AoC</a>
+                    <div>|</div>
+                    <a href="/project-euler">Euler</a>
+                </div>
+                <div class="other">
+                    <button onclick="toggleDarkMode()"><i id="themeIcon" class="fa-solid fa-moon"></i> Change Theme</button>
+                </div>
+            </div>
+
+            <div class="middle">
+                <h1>Relational Databases</h1>
+                
+                <h2>Entity</h2>
+                <ul>
+                    <li>An object, person, event or thing of interest about which data is to be recorder</li>
+                    <li>e.g. Customer</li>
+                    <li>e.g. Order</li>
+                </ul>
+                <br>
+                <h2>Attribute</h2>
+                <ul>
+                    <li>A property of an entity</li>
+                    <li>e.g. Cutomer ID</li>
+                    <li>e.g. Customer Name</li>
+                </ul>
+                <br>
+                <h2>Relationship</h2>
+                <ul>
+                    <li>Link or association between two entities</li>
+                    <li>Customer can make many orders, but each order is only made by one customer.</li>
+                </ul>
+                <h3>Types of Relationship</h3>
+                <ul>
+                    <li>One-to-one <b>(1:1)</b></li>
+                    <ol>
+                        <li>Employee and company Car;</li>
+                        <li>Employee and company Car;</li>
+                    </ol>
+                    <br>
+                    <li>One-to-Many <b>(1:n)</b></li>
+                    <ol>
+                        <li>Owner and Pet;</li>
+                        <li>Borrower and Book;</li>
+                    </ol>
+                    <br>
+                    <li>Many-to-Many <b>(n:m)</b></li>
+                    <ol>
+                        <li>Student and Course;</li>
+                        <li>Film and Film Star;</li>
+                    </ol>
+                </ul>
+                <p>Before you design a database you need to think about how it is going to be laid out. The design decisions are to some extent arbitrary. There is no “technical” reason to do one thing over another, it is down to your personal opinion.</p>
+                <br>
+
+                <h2>ER Diagrams</h2>
+                <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/45314377-79f5-410f-a719-654e31ce2f43/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220214%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220214T202103Z&X-Amz-Expires=86400&X-Amz-Signature=06a2bd4680a7779d012afbd6f777c7b4808c15a2c588cf457f8daf38e7df8dd2&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject">
+                <p>Entity Relationship (ER) Diagrams.</p>
+                                <br>
+                           
+                <h2>Relational Queries</h2>
+                <p><b>MASS <del>EFFECT</del> SELECT</b></p>
+                <pre>
+                    <code>
+    SELECT *
+        FROM pupils, classes, enrolment
+        WHERE classes.Id = enrolment.classesId AND pupils.Id = enrolment.pupilsId;
+                    </code>
+                </pre>
+
+
+                <br>
+                <br>
+                <div class="box">
+                    <button onclick="window.location.href='/compsci'" class="pwettyButton">Home</button>
+                </div>
+
+            </div>
+        
+            <div class="bottom">
+                <p>This is made specifically for <c style="color: var(--info-color)">Barton Peveril Students</c> and is 100% <b style="color: var(--error-color)">NOT</b> perfect and may contain errors!</p>
+                <div class="bottomSpan">
+                    <div class="left">
+                        <a><i class="fa-brands fa-github-square"></i> Github</a>
+                        <a><i class="fa-brands fa-twitter-square"></i> Twitter</a>
+                        <a><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                        <a><i class="fa-brands fa-youtube-square"></i> YouTube</a>
+                        <a href="/contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+                        <a><i class="fa-solid fa-user-shield"></i> API</a>
+                        <a><i class="fa-brands fa-discord"></i> Discord</a>
+                    </div>
+                    <div class="right">
+                    <a href="/compsci"><i class="fa-solid fa-laptop-code"></i> CompSci Notes</a> 
+                        <a href="/admin"><i class="fa-solid fa-file-code"></i> Admin</a> 
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

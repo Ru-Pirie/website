@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-	const table = sequelize.define('shortener', {
+	const table = sequelize.define('shorts', {
 		url: {
 			type: DataTypes.STRING(2048),
 		},

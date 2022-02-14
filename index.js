@@ -16,7 +16,8 @@ const Walker = require('./src/util/walk');
 
 const log = new Logger();
 
-app.use(express.urlencoded());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 client = { 
     createdAt: Date.now(), 

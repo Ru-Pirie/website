@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompSci | Translators</title>
+    <link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" id="mainStyle" type="text/css" href="/static/css/index.css"/>
+    <link rel="shortcut icon" href="/static/images/favicon.png"/>
+    <script src="/static/scripts/index.js"></script>
+    <script src="https://kit.fontawesome.com/5bd5b937e0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="centerContent">
+            <div class="top">
+                <div class="logo">
+                    <p onclick="window.location.href='/'">Ru-Pirie</p>
+                </div>
+                <div class="menu">
+                    <a href="/about">About</a>
+                    <div>|</div>
+                    <a href="/projects">Projects</a>
+                    <div>|</div>
+                    <a href="/contact">Contact</a>
+                    <div>|</div>
+                    <a href="/s">URL Shortener</a>
+                    <div>|</div>
+                    <a href="/advent-of-code">AoC</a>
+                    <div>|</div>
+                    <a href="/project-euler">Euler</a>
+                </div>
+                <div class="other">
+                    <button onclick="toggleDarkMode()"><i id="themeIcon" class="fa-solid fa-moon"></i> Change Theme</button>
+                </div>
+            </div>
+
+            <div class="middle">
+                <h1>Translators</h1>
+                <p>A translator is a piece of system software that is used to convert between a high level language and code that a computer can execute.</p>
+                <p><b>NEVER</b> write that a computer can understand something (they can’t) If you must then say it can parse it.</p>
+                <p><b>ALWAYS</b> say that it is something that they can execute</p>
+                <br>
+                <h2>ALWAYS say that it is something that they can execute</h2>
+                <h3>Assembler</h3>
+                <ul>
+                    <li>Is used with assembly language.</li>
+                    <li>It translates between assembly language and machine code.</li>
+                    <li>Effectively just a find and replace.</li>
+                </ul>
+                <h2>Compiler</h2>
+                <ul>
+                   <li>A compiler is used to take a high level language and convert it into a low level one.</li>
+                   <li>It takes the HLL and translates it down into machine code (native code).</li>
+                   <li>In a compiler it does not go directly to the hardware it stops half way at the machine code. The same as an assembler.</li>
+                </ul>
+                <h2>Interpreter</h2>
+                <ul>
+                    <li>This take the code directly and executes it on the system hardware.</li>
+                    <li>It skips the machine code stage.</li>
+                </ul>
+                <br>
+                <b>Native Code</b>
+                <p>This is the code where it can no longer be run on other hardware. Once it reaches this stage and or you have written machine code it will only work on specific hardware.</p>
+                <b>Source Code</b>
+                <p>This is the code that a programmer write themselves. It is the source of the program.</p>
+                <b>Object Code / Machine Code</b>   
+                <p>Can be used interchangeable however they are different things.</p>
+                <br>
+                <h2>Compiler</h2>
+                <p>Will compiled all of the code at once meaning that it can be slow since it needs to go through the whole thing all at once. However once the code has been compiled it will be able to be run as many times has needed on the same machine hardware.</p>
+                <h3>Key Points</h3>
+                <ul>
+                    <li>Does not execute the program.</li>
+                    <li>Need a startup time to complete the compilation.</li>
+                    <li>Creates an object filed that can be run without the original source code and programming environment.</li>  
+                    <li>Object file will be much faster than interpreted.</li>
+                    <li>Can hide original source code from the end user.</li>
+                </ul>
+                <br>
+                <h2>Interpreter</h2>
+                <p>With this the lines of the code are executed one by one. This means that all you need is the source code and you will be able to run it. This does not convert into object code however it also does not execute the raw high level language. This is far slower from a compiled language this is because it has to run through each line one at a time.</p>
+                <ul>
+                    <li>Does not produce object code</li>
+                    <li>Interpret and execute code per line</li>
+                    <li>Can start straight away</li>
+                    <li>Only need to interpret the line being run</li>
+                    <li>Need time to interpret as the program runs every time the program runs</li>
+                    <li>Need original source code and programming environment every time</li>
+                </ul>
+                <br>
+                <h2>Byte code</h2>
+                <p>It is an intermediate language that sits between the high level language and the machine code. This is the byte code. Its not quite as high level as a traditional HLL, however it is also not as low as a LLL. Byte code will be much faster to execute since it is created and compiled by a compiler. However when it comes to time to run it it will be interpreted then executed.</p>
+                <p><b>C#</b> is an example of a language that uses byte code. It does not go straight to machine code. Instead it translates down to bytecode. When the bytecode is run it is typically interpreted.</p>
+                <p>It is a good compromise between compilation and interpretation.</p>
+                <p>It has the massive advantage of being easy to interpret and very easy to move around since it is independent and non native to a particular processor. Portableness.</p>
+                <em>Note: It doesn’t strictly always doing this sometimes it does some funky stuff precompiling and interpreting as it goes on the fly. It can remember this precompiled code if its needed. Don’t need to know this kinda cool tho.</em>
+                <br><br>
+                <em><b>IMPORTANT:</b> The way that a language is translated is <b>NOT</b> down to the language itself. It is not a feature of the language.</em>
+                <br>
+                <br>
+                <br>
+                <div class="box">
+                    <button onclick="window.location.href='/compsci'" class="pwettyButton">Home</button>
+                </div>
+            </div>
+        
+            <div class="bottom">
+                <p>This is made specifically for <c style="color: var(--info-color)">Barton Peveril Students</c> and is 100% <b style="color: var(--error-color)">NOT</b> perfect and may contain errors!</p>
+                <div class="bottomSpan">
+                    <div class="left">
+                        <a><i class="fa-brands fa-github-square"></i> Github</a>
+                        <a><i class="fa-brands fa-twitter-square"></i> Twitter</a>
+                        <a><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                        <a><i class="fa-brands fa-youtube-square"></i> YouTube</a>
+                        <a href="/contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+                        <a><i class="fa-solid fa-user-shield"></i> API</a>
+                        <a><i class="fa-brands fa-discord"></i> Discord</a>
+                    </div>
+                    <div class="right">
+                    <a href="/compsci"><i class="fa-solid fa-laptop-code"></i> CompSci Notes</a> 
+                        <a href="/admin"><i class="fa-solid fa-file-code"></i> Admin</a> 
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

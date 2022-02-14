@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompSci | Exceptions</title>
+    <link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" id="mainStyle" type="text/css" href="/static/css/index.css"/>
+    <link rel="shortcut icon" href="/static/images/favicon.png"/>
+    <script src="/static/scripts/index.js"></script>
+    <script src="https://kit.fontawesome.com/5bd5b937e0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="centerContent">
+            <div class="top">
+                <div class="logo">
+                    <p onclick="window.location.href='/'">Ru-Pirie</p>
+                </div>
+                <div class="menu">
+                    <a href="/about">About</a>
+                    <div>|</div>
+                    <a href="/projects">Projects</a>
+                    <div>|</div>
+                    <a href="/contact">Contact</a>
+                    <div>|</div>
+                    <a href="/s">URL Shortener</a>
+                    <div>|</div>
+                    <a href="/advent-of-code">AoC</a>
+                    <div>|</div>
+                    <a href="/project-euler">Euler</a>
+                </div>
+                <div class="other">
+                    <button onclick="toggleDarkMode()"><i id="themeIcon" class="fa-solid fa-moon"></i> Change Theme</button>
+                </div>
+            </div>
+
+            <div class="middle">
+                <h1>Exceptions</h1>
+                
+                <h2>Syntax Errors</h2>
+                <p>This is stuff like when you miss a semi colon. Or just misspell something (constantly 😕).</p>
+                <br>
+
+                <h2>Logical Errors</h2>
+                <p>You messed up, this is not something to do with the program itself it is something wrong with the way that you wrote the code itself.</p>
+                <br>
+
+                <h2>Runtime Errors</h2>
+                <ul>
+                    <li>Can be known as Exceptions</li>
+                    <li>Takes many forms such as <b>OutOfRangeException</b> or <b>StackOverflowException</b></li>
+                </ul>
+                <p>These will only occur when the program is run. Very sneaky beaky. You cannot cause these errors if you have outstanding syntax errors.</p>
+                <br>
+
+                <h2>Catching Exceptions</h2>
+                <p>An <b>exception</b> is also known as a runtime error. To catch an exception is to let the running program recognise when the error occurs. If an exception is left uncaught, the program will crash or cause a debugger to initialize.</p>
+                <p>If a program is running in prod mode when it crashes it will give a crash report.</p>
+
+                <br>
+
+                <h3>Why do we want to catch errors?</h3>
+                <ol>
+                    <li>To make sure that the program doesn’t close unexpectedly and loose all of your data.</li>
+                    <li>So that we can find where the error is.</li>
+                    <li>Allow for loops when invalid data is provided.</li>
+                </ol>
+
+
+                <br><br>
+                <h2>Examples</h2>
+                <p>Boilerplate</p>
+                <p><em>Note: <b>Exception</b> can be replaced by any exception for example <b>ArgumentOutOfRangeException</b></em></p>
+                <pre>
+                    <code>
+    try {
+        // Code to execute
+    } catch (Exception e) {
+        // Handel Exception here
+    }
+                    </code>
+                </pre>
+
+                <br>
+                <p>Non-numver probided in an <b>int.parse</b></p>
+                <pre>
+                    <code>
+    int number = 0;
+    try {
+        int.parse(Console.ReadLine());
+    } catch (FormatException) {
+        Console.WriteLine("Thats not a bloody number!");
+    }
+                    </code>
+                </pre>
+
+                <br>
+                <p>Get a valid number input</p>
+                <p><em>Condition: <b>number >= 0</b> and <b>number <= 100</b></em></p>
+                <pre>
+                    <code>
+    static void Main() {
+        int number = 0;
+        Console.WriteLine("Input a number");
+
+        do {
+            try {
+                number = int.Parse(Console.ReadLine());
+            } catch(FormatException) {
+                Console.WriteLine("Invalid Number Please Try Again: ")
+            }
+        } while (number <= 0);
+    }
+                    </code>
+                </pre>
+
+                <br>
+                <p>Throwing / Creating an exception</p>
+                <pre>
+                    <code>
+    static void Main() {
+        int number = 0;
+        Console.WriteLine("Input a number");
+    
+        do {
+            try {
+                number = int.Parse(Console.ReadLine());
+            } catch(FormatException) {
+                Console.WriteLine("Invalid Number Please Try Again: ")
+            }
+        } while (number <= 0);
+    }
+                    </code>
+                </pre>
+
+                <br>
+                <br>
+                <div class="box">
+                    <button onclick="window.location.href='/compsci'" class="pwettyButton">Home</button>
+                </div>
+
+            </div>
+        
+            <div class="bottom">
+                <p>This is made specifically for <c style="color: var(--info-color)">Barton Peveril Students</c> and is 100% <b style="color: var(--error-color)">NOT</b> perfect and may contain errors!</p>
+                <div class="bottomSpan">
+                    <div class="left">
+                        <a><i class="fa-brands fa-github-square"></i> Github</a>
+                        <a><i class="fa-brands fa-twitter-square"></i> Twitter</a>
+                        <a><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                        <a><i class="fa-brands fa-youtube-square"></i> YouTube</a>
+                        <a href="/contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+                        <a><i class="fa-solid fa-user-shield"></i> API</a>
+                        <a><i class="fa-brands fa-discord"></i> Discord</a>
+                    </div>
+                    <div class="right">
+                    <a href="/compsci"><i class="fa-solid fa-laptop-code"></i> CompSci Notes</a> 
+                        <a href="/admin"><i class="fa-solid fa-file-code"></i> Admin</a> 
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

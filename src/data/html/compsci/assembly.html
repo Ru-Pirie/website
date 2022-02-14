@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompSci | Assembly Code</title>
+    <link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" id="mainStyle" type="text/css" href="/static/css/index.css"/>
+    <link rel="shortcut icon" href="/static/images/favicon.png"/>
+    <script src="/static/scripts/index.js"></script>
+    <script src="https://kit.fontawesome.com/5bd5b937e0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="centerContent">
+            <div class="top">
+                <div class="logo">
+                    <p onclick="window.location.href='/'">Ru-Pirie</p>
+                </div>
+                <div class="menu">
+                    <a href="/about">About</a>
+                    <div>|</div>
+                    <a href="/projects">Projects</a>
+                    <div>|</div>
+                    <a href="/contact">Contact</a>
+                    <div>|</div>
+                    <a href="/s">URL Shortener</a>
+                    <div>|</div>
+                    <a href="/advent-of-code">AoC</a>
+                    <div>|</div>
+                    <a href="/project-euler">Euler</a>
+                </div>
+                <div class="other">
+                    <button onclick="toggleDarkMode()"><i id="themeIcon" class="fa-solid fa-moon"></i> Change Theme</button>
+                </div>
+            </div>
+
+            <div class="middle">
+                <h1>Assembly</h1>
+                <p>Assembly language is the term that is given to programs that are written in close to machine code. This is a very low level language.  If this comes up in an exam then you will need to hand write.</p>
+                <p>Machine code is what the processor directly uses to run a program. Assembly is very easily interpreted as machine code meaning that it can be very heavily optimised. Very memory efficient and time efficient.</p>
+                <p><b>Binary:</b> 0001 0001 0000 1111</p>
+                <p><b>Assembly:</b> ADD R1, #15</p>
+                <p>The process to get from one to the other is called the decode / encode step. In order to make assembly you would have to use an assembler. The instruction set is a set of binary codes which tell a processor to do a certain thing. It is machine specific.</p>
+                <br>
+                <h2>Opcode</h2>
+                <ul>
+                    <li>These are short abbreviations for what an instruction should do.</li>
+                    <li>They are called mnemonics</li>
+                    <li>They are typically between 1 and 4 letters</li>
+                    <li>EG. ADD, AND, B, BNE, HALT</li>
+                </ul>
+                <p>Assembly language itself consists of the OPCODE and its OPERAND(S). Overall it is a much more human-friendly version of machine code meaning that it is actually possible for a human to ode rather than it being just 1’s and 0’s.</p>
+                <p>There is no ambiguity with assembly, what you write is what happens in a very literally way. This is because all the assembler has to do in order to convert it into machine code is a find and replace. Very speedy.</p>
+                <br>
+                <h2>Assembly Instructions</h2>
+                <ul>
+                        <li>They do very little per instruction.</li>
+                        <li>They can move data around</li>
+                        <li>They can perform simple logical and arithmetic operation on data in registers.</li>
+                        <li>Simple branching, this means that you can jump to a specific instruction in the code (allows looping)</li>
+                        <li>Other instructions such as HALT</li>
+                </ul>
+
+                <h3>Example of Some</h3>
+                <pre>
+                    <code>
+    LDR R0, 157
+    Start:
+    ADD R0, R0, #1
+    B start
+                    </code>
+                </pre>
+                <br>
+                <h2>Addessing Modes</h2>
+                <p>This tells an instruction where to get a piece of data. There are three main types of modes.</p>
+                <ol>
+                    <li><b>Immediate</b> - The data is hard-coded into the program. </li>
+                    <ul><li>EG. ADD R0, R1, #7</li></ul>
+                    <li><b>Direct (register)</b> - The data is stored in a general purpose register.</li>
+                    <ul><li>EG. ADD R0, R1, R2</li></ul>
+                    <li><b>Direct (memory)</b> - The value in the instruction reversed to the address in main system memory where the data is fetched from</li>
+                    <ul><li>EG. LDR R0, 5</li></ul>
+                </ol>
+                <em><b>#</b> denotes immediate addressing. <b>R</b> denotes Direct register if none apply then it is a direct memory address.</em>
+                <br><br>
+                <h2>B</h2>
+                <p>There are 4 conditional branching options.</p>
+                <p>These must come after a conditional statement otherwise there will be nothing to compare against.</p>
+                <p>You would have to have <b>CMP R0, #10</b> THEN the <b>BEQ &lt;branch&gt;</p>
+
+
+                <br>
+                <br>
+                <div class="box">
+                    <button onclick="window.location.href='/compsci'" class="pwettyButton">Home</button>
+                </div>
+
+            </div>
+        
+            <div class="bottom">
+                <p>This is made specifically for <c style="color: var(--info-color)">Barton Peveril Students</c> and is 100% <b style="color: var(--error-color)">NOT</b> perfect and may contain errors!</p>
+                <div class="bottomSpan">
+                    <div class="left">
+                        <a><i class="fa-brands fa-github-square"></i> Github</a>
+                        <a><i class="fa-brands fa-twitter-square"></i> Twitter</a>
+                        <a><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                        <a><i class="fa-brands fa-youtube-square"></i> YouTube</a>
+                        <a href="/contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+                        <a><i class="fa-solid fa-user-shield"></i> API</a>
+                        <a><i class="fa-brands fa-discord"></i> Discord</a>
+                    </div>
+                    <div class="right">
+                    <a href="/compsci"><i class="fa-solid fa-laptop-code"></i> CompSci Notes</a> 
+                        <a href="/admin"><i class="fa-solid fa-file-code"></i> Admin</a> 
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

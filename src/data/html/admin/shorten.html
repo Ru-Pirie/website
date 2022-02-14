@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ru-Pirie | Projects</title>
+    <title>ADMIN | Database</title>
     <link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
     <link rel="stylesheet" id="mainStyle" type="text/css" href="/static/css/index.css"/>
     <link rel="shortcut icon" href="/static/images/favicon.png"/>
@@ -37,8 +37,14 @@
             </div>
 
             <div class="middle">
-                <div class="errorBox">
-                    This page is not quite done yet. Check back soon!
+                <div class="box">
+                    <form id="queryForm" method="post" action="/admin/createShort">
+                        <label>Take </label>
+                        <input type="text" name="url" id="url"></input><br><br><br>
+                        <label>shorten to</label>
+                        <input type="text" name="shortended" id="shortended"></input><br><br><br>
+                        <input class="pwettyButton" type="submit" value="Execute">
+                    </form>
                 </div>
             </div>
         
@@ -62,6 +68,24 @@
             </div>
         </div>
     </div>
-    
 </body>
+
+<script>
+    function GetURLParameter(sParam)
+    {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) 
+        {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) 
+            {
+                return sParameterName[1];
+            }
+        }
+    }
+
+    document.getElementById('queryForm').action = `${document.getElementById('queryForm').action}?user=${GetURLParameter('user')}&pass=${GetURLParameter('pass')}`
+</script>
+
 </html>

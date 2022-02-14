@@ -25,7 +25,7 @@ class Router {
                 return res.redirect(`/s?code=Invalid URL`)
             }
 
-            const urlExists = await this.client.db.query('SELECT * FROM shorteners WHERE destination = ?', [ url ])
+            const urlExists = await this.client.db.query('SELECT * FROM shorts WHERE destination = ?', [ url ])
 
             if (urlExists.length === 1) return res.redirect(`/s?code=${urlExists[0].url}`);
 
@@ -33,19 +33,19 @@ class Router {
                 short = '';
                 for (var i = 0; i < 5; i++) short += validChars.charAt(Math.floor(Math.random() * validChars.length));
                 
-                const result = await this.client.db.query('SELECT * FROM shorteners WHERE url = ?', [ short ])
+                const result = await this.client.db.query('SELECT * FROM shorts WHERE url = ?', [ short ])
                 if (result.length === 0) unique = true;
             }
 
-            await this.client.db.query('INSERT INTO shorteners (url, destination, clicks, created, lastClicked) VALUES (?, ?, 0, ?, ?)', [ short, url, Date.now(), Date.now() ]);
+            await this.client.db.query('INSERT INTO shorts (url, destination, clicks, created, lastClicked) VALUES (?, ?, 0, ?, ?)', [ short, url, Date.now(), Date.now() ]);
             if (req.headers['user-agent'].toLowerCase().includes('sharex')) return res.end(JSON.stringify({ code: short }))
             res.redirect(`/s?code=${short}`)
         })
 
-        this.router.all('/stats/:code', async (req, res) => {
+        this.router.get('/stats/:code', async (req, res) => {
             const code = req.params.code;
 
-            const result = await this.client.db.query('SELECT * FROM shorteners WHERE url = ?', [ code ])
+            const result = await this.client.db.query('SELECT * FROM shorts WHERE url = ?', [ code ])
             
             if (result.length === 1) {
                 let file = fs.readFileSync(path.join(__dirname, '../../data/html/url-short/stats.html')).toString()
@@ -68,23 +68,23 @@ class Router {
             }
         })
 
-        this.router.all('/:code', async (req, res) => {
+        this.router.get('/:code', async (req, res) => {
             const code = req.params.code;
 
-            const result = await this.client.db.query('SELECT * FROM shorteners WHERE url = ?', [ code ])
+            const result = await this.client.db.query('SELECT * FROM shorts WHERE url = ?', [ code ])
             
             if (result.length === 1) {
-                this.client.db.query('UPDATE shorteners SET clicks = ?, lastClicked = ? WHERE url = ? ', [ result[0].clicks + 1, Date.now(), result[0].url ])
+                this.client.db.query('UPDATE shorts SET clicks = ?, lastClicked = ? WHERE url = ? ', [ result[0].clicks + 1, Date.now(), result[0].url ])
                 return res.redirect(302, result[0].destination);
             } else {
                 res.redirect('/s?code=Shortened URL does not exist!');
             }
         })
 
-        this.router.all('/:code/stats', async (req, res) => {
+        this.router.get('/:code/stats', async (req, res) => {
             const code = req.params.code;
 
-            const result = await this.client.db.query('SELECT * FROM shorteners WHERE url = ?', [ code ])
+            const result = await this.client.db.query('SELECT * FROM shorts WHERE url = ?', [ code ])
             
             if (result.length === 1) {
                 let file = fs.readFileSync(path.join(__dirname, '../../data/html/url-short/stats.html')).toString()
@@ -107,7 +107,7 @@ class Router {
             }
         })
 
-        this.router.all('/', async (req, res) => {
+        this.router.get('/', async (req, res) => {
             res.sendFile(path.join(__dirname, '../../data/html/url-short/index.html'))
         })
     }

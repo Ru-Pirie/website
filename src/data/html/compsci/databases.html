@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompSci | Databases</title>
+    <link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" id="mainStyle" type="text/css" href="/static/css/index.css"/>
+    <link rel="shortcut icon" href="/static/images/favicon.png"/>
+    <script src="/static/scripts/index.js"></script>
+    <script src="https://kit.fontawesome.com/5bd5b937e0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="centerContent">
+            <div class="top">
+                <div class="logo">
+                    <p onclick="window.location.href='/'">Ru-Pirie</p>
+                </div>
+                <div class="menu">
+                    <a href="/about">About</a>
+                    <div>|</div>
+                    <a href="/projects">Projects</a>
+                    <div>|</div>
+                    <a href="/contact">Contact</a>
+                    <div>|</div>
+                    <a href="/s">URL Shortener</a>
+                    <div>|</div>
+                    <a href="/advent-of-code">AoC</a>
+                    <div>|</div>
+                    <a href="/project-euler">Euler</a>
+                </div>
+                <div class="other">
+                    <button onclick="toggleDarkMode()"><i id="themeIcon" class="fa-solid fa-moon"></i> Change Theme</button>
+                </div>
+            </div>
+
+            <div class="middle">
+                <h1>Databases</h1>
+                
+                <p>SQL - Structured Query Language</p>
+                <p>Is a very useful thing to know! Comes up everywhere, even if your never going to sue it. It has been around for so long that the chances of it ever disappearing are tiny.</p>
+                <br>
+                <h2>What is SQL?</h2>
+                <p>SQL is a <b>declarative</b> programming language.</p>
+                <p>This means that we state <b>WHAT</b> we want rather than <b>HOW</b> we want to obtain the data. In SQL very little goes a long way.</p>
+                <p>SQL is a ‘guidebook’ of sorts and there are many different implementations of SQL. The one we are using is MySQL.</p>
+                <br>
+                <h3>DDL - Data Definition Language</h3>
+                <p>Used to create and maintain structures to hold data.</p>
+                <h3>DML - Data Manipulation Language</h3>
+                <p>Used to edit the data itself, for example editing removing adding entries to a database.</p>
+
+                <br>
+                <h2>SQL Statements</h2>
+                <p><b>USE</b></p>
+                <pre><code>
+    USE hogwarts;
+                </code></pre>
+                <br>
+                <p><b>CREATE</b></p>
+                <pre><code>
+    CREATE DATABASE hogwarts;
+
+    CREATE TABLE students (
+        `StudentNumber` INT(8) PRIMARY KEY,
+        `StudentName` VARCHAR(32),
+        `DateOfBirth` Date,
+    );
+                </code></pre>
+                <br>
+                <p><b>INSERT INTO</b></p>
+                <pre><code>
+    INSERT INTO students VALUES (00000001, 'Hermione', '1984-10-22');
+
+    INSERT INTO students VALUES 
+        (0001, 'Hermione', '1984-10-22'),
+        (0002, 'Harry', '1984-09-22'),
+        (0003, 'Ron', '1984-11-02');
+                </code></pre>
+                <br>
+                <p><b>UPDATE</b></p>
+                <pre><code>
+    UPDATE students SET DateOfBirth = '1984-09-22' WHERE StudentName = 'Hermione';
+
+    -- Change all entries in table students to have DOB of '1984-09-22'
+    UPDATE students SET DateOfBirth = '1984-09-22';
+                </code></pre>
+                <br>
+                <p><b>DELETE</b></p>
+                <pre><code>
+    DELETE FROM students WHERE StudentName = 'Hermione';
+
+    -- Again can be made to affect all entries
+    DELETE FROM students;
+                </code></pre>
+                <br>
+                <p><b>SELECT</b></p>
+                <pre><code>
+    SELECT * FROM students;
+
+    SELECT * FROM students WHERE StudentName = 'Harry';
+    
+    SELECT StudentNumber FROM students WHERE StudentName = 'Harry';
+    
+    -- Can have conditions for example
+    SELECT * FROM students WHERE StudentNumber > 2;
+    
+    -- You can sort the result of the query ASC / DESC
+    SELECT * FROM students ORDER BY StudentNumber DESC;
+                </code></pre>
+                <p><em>Will return a record set, this is a list of records with fields. Or not if you’ve done it wrong.</em></p>
+                <br>
+                <br>
+
+                <h2>SQL Conditions</h2>
+                <p><b>AND</b></p>
+                <pre><code>
+    SELECT * FROM orders WHERE ItemCode = 2 AND OrderCode = 3;
+                </code></pre>
+                <br>
+                <p><b>OR</b></p>
+                <pre><code>
+    SELECT * FROM orders WHERE ItemCode = 1 OR ItemCode = 8;
+                </code></pre>
+                <br>
+                <p><b>NOT</b></p>
+                <pre><code>
+    SELECT * FROM orders WHERE NOT ItemCode = 1;
+                </code></pre>
+                <br>
+                <p><b>IS NULL</b></p>
+                <pre><code>
+    SELECT * FROM orders WHERE signature IS NULL
+                </code></pre>
+                <br>
+                <p><b>BETWEEN...    AND...</b></p>
+                <pre><code>
+    DELETE * FROM orders WHERE OrderDate BETWEEN '2010/01/01' AND '2020/01/01';
+                </code></pre>
+                <br>
+
+
+                <br>
+                <br>
+                <div class="box">
+                    <button onclick="window.location.href='/compsci'" class="pwettyButton">Home</button>
+                </div>
+
+            </div>
+        
+            <div class="bottom">
+                <p>This is made specifically for <c style="color: var(--info-color)">Barton Peveril Students</c> and is 100% <b style="color: var(--error-color)">NOT</b> perfect and may contain errors!</p>
+                <div class="bottomSpan">
+                    <div class="left">
+                        <a><i class="fa-brands fa-github-square"></i> Github</a>
+                        <a><i class="fa-brands fa-twitter-square"></i> Twitter</a>
+                        <a><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                        <a><i class="fa-brands fa-youtube-square"></i> YouTube</a>
+                        <a href="/contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+                        <a><i class="fa-solid fa-user-shield"></i> API</a>
+                        <a><i class="fa-brands fa-discord"></i> Discord</a>
+                    </div>
+                    <div class="right">
+                    <a href="/compsci"><i class="fa-solid fa-laptop-code"></i> CompSci Notes</a> 
+                        <a href="/admin"><i class="fa-solid fa-file-code"></i> Admin</a> 
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
