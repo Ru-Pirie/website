@@ -28,6 +28,7 @@ body {
     --main-color: #111;
     --sub-color: #444;
     --error-color: #da3333;
+    --warn-color: #e9901c;
     --success-color: #32D961;
     --info-color: #2062f0;
     --darker-info-color: #133d97;
@@ -368,4 +369,32 @@ textarea {
 
 b {
     color: var(--success-color);
+}
+
+.empty {
+    color: var(--error-color);
+}
+
+.partial {
+    color: var(--warn-color);
+}
+
+.fully {
+    color: var(--success-color);
+}
+
+.fully:hover {
+    color: var(--success-color);
+}
+
+.partial:hover {
+    color: var(--warn-color);
+}
+
+.empty:hover{
+    color: var(--error-color);
+}
+
+.compSciTopics {
+    color: var(--sub-color);
 }

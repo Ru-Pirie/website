@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 html { 
     scroll-behavior: smooth;
@@ -28,9 +28,10 @@ body {
     --main-color: #eee;
     --sub-color: #bbb;
     --error-color: #da3333;
+    --warn-color: #e9901c;
     --success-color: #32D961;
-    --info-color: #3BD9DB;
-    --darker-info-color: #32B8BA;
+    --info-color: #2750a8;
+    --darker-info-color: #16377D;
 }
 
 
@@ -369,4 +370,32 @@ textarea {
 
 b {
     color: var(--success-color);
+}
+
+.empty {
+    color: var(--error-color);
+}
+
+.partial {
+    color: var(--warn-color);
+}
+
+.fully {
+    color: var(--success-color);
+}
+
+.fully:hover {
+    color: var(--success-color);
+}
+
+.partial:hover {
+    color: var(--warn-color);
+}
+
+.empty:hover{
+    color: var(--error-color);
+}
+
+.compSciTopics {
+    color: var(--sub-color);
 }
