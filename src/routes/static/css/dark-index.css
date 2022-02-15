@@ -399,3 +399,13 @@ b {
 .compSciTopics {
     color: var(--sub-color);
 }
+
+input[type="email"] {
+    width: 50%;
+    color: var(--main-color);
+    font-family: 'Ubuntu Mono', monospace;
+    text-align: center;
+    font-size: 1.2em;
+    height: 4vh;
+    background-color: var(--sub-color);
+}
